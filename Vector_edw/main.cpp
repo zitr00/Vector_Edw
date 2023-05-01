@@ -19,12 +19,17 @@ int main()
 		std::cin >> aux;
 		vec.push_back(aux);
 	}
-
-	for (int i = 0; i < 5; ++i)
+	ewd::vector<int> copie;
+	copie = vec;
+	for (int i = 0; i < copie.size(); ++i)
 	{
-		std::cout << vec[i]<<" ";
+		std::cout << copie[i]<<" ";
 	}
-	std::cout << vec.at(2);
-	std::cout << vec.capacity();
+	copie.erase(0, 1);
+	std::cout << std::endl;
+	for (int i = 0; i < copie.size(); ++i)
+	{
+		std::cout << copie[i] << " ";
+	}
 	return 0;
 }
