@@ -2,10 +2,8 @@
 #include "ewdvector.h"
 #include <vector>
 
-
 int main()
 {
-
 	ewd::vector<int> vec;
 
 	/*for (std::vector<int>::iterator it = v.begin(); it != v.end(); ++it)
@@ -19,13 +17,12 @@ int main()
 		std::cin >> aux;
 		vec.push_back(aux);
 	}
-	ewd::vector<int> copie;
-	copie = vec;
+	ewd::vector<int> copie(std::move(vec));
 	for (int i = 0; i < copie.size(); ++i)
 	{
 		std::cout << copie[i]<<" ";
 	}
-	copie.erase(0, 1);
+	copie.erase(1,3);
 	std::cout << std::endl;
 	for (int i = 0; i < copie.size(); ++i)
 	{

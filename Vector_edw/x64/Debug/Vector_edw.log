@@ -1,8 +1,8 @@
 ﻿  main.cpp
-C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(24,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(30,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\ewdvector.h(198,26): warning C4018: '<': signed/unsigned mismatch
-C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\ewdvector.h(192): message : while compiling class template member function 'void ewd::vector<int>::erase(unsigned int,unsigned int)'
-C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(28): message : see reference to function template instantiation 'void ewd::vector<int>::erase(unsigned int,unsigned int)' being compiled
-C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(9): message : see reference to class template instantiation 'ewd::vector<int>' being compiled
+C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(21,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\ewdvector.h(186,26): warning C4018: '<': signed/unsigned mismatch
+C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\ewdvector.h(181): message : while compiling class template member function 'void ewd::vector<int>::erase(unsigned int,unsigned int)'
+C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(25): message : see reference to function template instantiation 'void ewd::vector<int>::erase(unsigned int,unsigned int)' being compiled
+C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\main.cpp(7): message : see reference to class template instantiation 'ewd::vector<int>' being compiled
   Vector_edw.vcxproj -> C:\Users\sinkl\OneDrive\Desktop\Projects\Project1\Vector_edw\x64\Debug\Vector_edw.exe

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <initializer_list>
 
 namespace ewd
 {
@@ -15,12 +16,17 @@ namespace ewd
 		using pointer = T*;
 
 		vector();
+		vector(unsigned int count); // face un vector cu count elemente egalate cu 0
+		vector(unsigned int count, value_type copy); // face un vector cu count elemente egalate cu copy
+		vector(const std::initializer_list<value_type>& ilist); // marea smecherie
 		vector(const vector& other);
 		vector(vector&& other) noexcept; // greu
 		~vector();
 
 		vector& operator=(const vector& other);
 		vector& operator=(vector&& other) noexcept; // greu
+
+		bool operator==(const vector& other) const;
 
 		unsigned int size() const;
 		pointer data();
@@ -34,13 +40,16 @@ namespace ewd
 		const value_type& operator[](unsigned int offset) const;
 		value_type& at(unsigned int offset);
 		const value_type& at(unsigned int offset) const;
-		//next:
 		value_type& front();
 		value_type& back();
 		bool empty();
-		value_type& pop_back();
+		void pop_back();
 		void erase(unsigned int offset);
 		void erase(unsigned int start, unsigned int finish);
+
+		//TODO: more constructors
+		// operator== and operator<=> (C++20)
+		// reserve(n), shrink_to_fit()
 
 	private:
 		pointer m_data;
@@ -55,13 +64,14 @@ namespace ewd
 		: m_data(nullptr), m_size(0), m_capacity(0)
 	{}
 
-	//template<typename T>
-	//vector<T>::vector(vector&& other)//mutare
-	//{
-
-
-
-	//}
+	template<typename T>
+	vector<T>::vector(vector&& other) noexcept 
+		: m_data(other.m_data), m_size(other.m_size), m_capacity(other.m_capacity)
+	{
+		other.m_data = nullptr;
+		other.m_size = 0;
+		other.m_capacity = 0;
+	}
 
 	template<typename T>
 	vector<T>::vector(const vector& other)
@@ -83,37 +93,23 @@ namespace ewd
 	template<typename T>
 	typename vector<T>::vector& vector<T>::operator=(const vector& other)
 	{
-		pointer newBlock = new value_type[other.m_size];
-		if (newBlock != nullptr && other.m_data != nullptr)
+		if (this != &other)
 		{
-			for (unsigned int i = 0; i < other.m_size; ++i)
-			{
-				newBlock[i] = other[i];
-			}
+			//FIXME: fix this up
 		}
-		clear();
-		m_data = newBlock;
-		m_capacity = other.m_capacity;
-		m_size = other.m_size;
 		return *this;
 	}
 
-	//template<typename T>
-	//typename vector<T>::vector& vector<T>::operator=(vector&& other)//mutare
-	//{
-	//	/*pointer newBlock = new value_type[other.m_size];
-	//	if (newBlock != nullptr && other.m_data != nullptr)
-	//	{
-	//		for (unsigned int i = 0; i < other.m_size; ++i)
-	//		{
-	//			newBlock[i] = other[i];
-	//		}
-	//	}
-	//	clear();
-	//	m_data = newBlock;
-	//	m_capacity = other.m_capacity;
-	//	return m_data;*/
-	//}
+
+	template<typename T>
+	typename vector<T>::vector& vector<T>::operator=(vector&& other)//mutare
+	{
+		if (this != &other)
+		{
+			//FIXME: add me
+		}
+		return *this;
+	}
 
 	template<typename T>
 	vector<T>::~vector()
@@ -161,16 +157,10 @@ namespace ewd
 	}
 
 	template<typename T>
-	typename vector<T>::value_type& vector<T>::pop_back()
+	void vector<T>::pop_back()
 	{
-		if (m_size == 0) std::cout << "ESTE GOL!";
-		else
-		{
-			value_type aux = m_data[m_size - 1];
-			erase(m_size);
-			return aux;
-			
-		}
+		if (m_size != 0) 
+			erase(m_size-1);
 	}
 
 	template<typename T>
@@ -179,11 +169,11 @@ namespace ewd
 		if(offset>m_size) throw std::out_of_range("Out of bounds acces!");
 		else
 		{
-			--m_size;
-			for (int i = offset; i < m_size; i++)
+			for (unsigned int i = offset; i < m_size-1; i++)
 			{
 				m_data[i] = m_data[i + 1];
 			}
+			--m_size;
 		}
 	}
 
@@ -193,12 +183,12 @@ namespace ewd
 		if (finish > m_size) throw std::out_of_range("Out of bounds acces!");
 		else
 		{
-			unsigned int diff = finish - start + 1;//se vor sterge atatea el. si diff de pozitie dintre ele
-			m_size = m_size - diff;
-			for (int i = start; i < m_size; i++)
+			unsigned int diff = finish - start + 1;
+			for (int i = start; i < m_size-diff; i++)
 			{
 				m_data[i] = m_data[i + diff];
 			}
+			m_size = m_size - diff;
 		}
 	}
 
@@ -217,8 +207,7 @@ namespace ewd
 	template<typename T>
 	bool vector<T>::empty()
 	{
-		if (m_size == 0) return true;
-		else return false;
+		return m_size == 0;
 	}
 
 	template<typename T>
