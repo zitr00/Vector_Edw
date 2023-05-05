@@ -95,21 +95,27 @@ namespace ewd
 	{
 		if (this != &other)
 		{
+			other.realloc(other.m_capacity);//realocare si copiere
+			m_size = other.m_size;
 			//FIXME: fix this up
 		}
 		return *this;
 	}
 
 
-	template<typename T>
-	typename vector<T>::vector& vector<T>::operator=(vector&& other)//mutare
-	{
-		if (this != &other)
-		{
-			//FIXME: add me
-		}
-		return *this;
-	}
+	//template<typename T>
+	//typename vector<T>::vector& vector<T>::operator=(vector&& other)//mutare
+	//{
+	//	if (this != &other)
+	//	{
+
+
+
+
+	//		//FIXME: add me
+	//	}
+	//	return *this;
+	//}
 
 	template<typename T>
 	vector<T>::~vector()
@@ -249,7 +255,7 @@ namespace ewd
 				newBlock[i] = m_data[i];
 			}
 		}
-		delete[] m_data;
+		clear();
 		m_data = newBlock;
 		m_capacity = newCapacity;
 	}

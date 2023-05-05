@@ -17,7 +17,8 @@ int main()
 		std::cin >> aux;
 		vec.push_back(aux);
 	}
-	ewd::vector<int> copie(std::move(vec));
+	//ewd::vector<int> copie(std::move(vec));
+	ewd::vector<int> copie(vec);
 	for (int i = 0; i < copie.size(); ++i)
 	{
 		std::cout << copie[i]<<" ";
