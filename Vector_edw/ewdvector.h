@@ -20,11 +20,11 @@ namespace ewd
 		vector(unsigned int count, value_type copy); // face un vector cu count elemente egalate cu copy
 		vector(const std::initializer_list<value_type>& ilist); // marea smecherie
 		vector(const vector& other);
-		vector(vector&& other) noexcept; // greu
+		vector(vector&& other) noexcept; 
 		~vector();
 
 		vector& operator=(const vector& other);
-		vector& operator=(vector&& other) noexcept; // greu
+		vector& operator=(vector&& other) noexcept; 
 
 		bool operator==(const vector& other) const;
 
@@ -115,8 +115,6 @@ namespace ewd
 	vector<T>::~vector()
 	{
 		delete[] m_data;
-		//m_size = 0;
-		//m_capacity = 0;
 	}
 
 	template<typename T>
@@ -141,8 +139,8 @@ namespace ewd
 	void vector<T>::clear()
 	{
 		delete[] m_data;
-		//m_size = 0;
-		//m_capacity = 0;
+		m_size = 0;
+		m_capacity = 0;
 	}
 
 	template<typename T>
